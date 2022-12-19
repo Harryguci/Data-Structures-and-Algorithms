@@ -1,0 +1,164 @@
+#include <iostream>
+#include <iomanip>
+#include <list>
+#include <string>
+#include <string.h>
+#include <vector>
+
+using namespace std;
+
+class Mathang {
+private:
+	string ID;
+	double cost;
+
+public:
+	Mathang() {
+		ID = "0";
+		cost = 0;
+	}
+	Mathang(string ID, double cost) {
+		this->ID = ID;
+		this->cost = cost;
+	}
+	void input() {
+		cout << "\nNhap ma hang: "; cin >> ID;
+		cout << "\nNhap don gia: "; cin >> cost;
+	}
+
+	void set(string ID, double cost) {
+		this->ID = ID;
+		this->cost = cost;
+	}
+
+	string getID() {
+		return this->ID;
+	}
+
+	double getCost() {
+		return this->cost;
+	}
+
+	void display() {
+		cout << setw(20) << ID << setw(20) << cost;
+	}
+	friend istream& operator>>(istream& is, Mathang& A) {
+		cout << "\nNhap ma hang: "; is >> A.ID;
+		cout << "\nNhap don gia: "; is >> A.cost;
+		return is;
+	}
+
+	friend ostream& operator<<(ostream& os, Mathang B) {
+		os << setw(20) << B.ID << setw(20) << B.cost;
+		return os;
+	}
+};
+
+class Hoadon {
+private:
+	string ID;
+	int num;
+	string date;
+
+public:
+	Hoadon() {
+		ID = "0";
+		num = 0;
+		date = "";
+	}
+	Hoadon(string ID, int num, string date) {
+		this->ID = ID;
+		this->num = num;
+		this->date = date;
+	}
+	void input() {
+		cout << "\nNhap ma hang: "; cin >> ID;
+		cout << "\nNhap so luong: "; cin >> num;
+		cout << "\nNhap ngay: "; cin >> date;
+	}
+	void set(string ID, int num, string date) {
+		this->ID = ID;
+		this->num = num;
+		this->date = date;
+	}
+	void display() {
+		cout << setw(20) << ID << setw(20) << num << setw(20) << date;
+	}
+	string getDate() {
+		return this->date;
+	}
+	string getID() {
+		return this->ID;
+	}
+	double Calc(double cost) {
+		return (this->num * cost);
+	}
+
+	friend ostream& operator<<(ostream& os, Hoadon& A) {
+		os << setw(20) << A.ID << setw(20) << A.num << setw(20) << A.date;
+		return os;
+	}
+	friend istream& operator>>(istream& is, Hoadon& A) {
+		cout << "\nNhap ma hang: "; is >> A.ID;
+		cout << "\nNhap so luong: "; is >> A.num;
+		cout << "\nNhap ngay: "; is >> A.date;
+		return is;
+	}
+};
+
+template<class T> 
+void printVector(vector<T> arr, int n) {
+	for (int i = 0; i < n; i++) {
+		cout << arr[i];
+		cout << endl;
+	}
+}
+
+template<class T>
+void inputVector(vector<T>& arr, int n) {
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+}
+int main() {
+	
+	int n, m;
+	cout << "\nNhap so luong mat hang: "; cin >> m;
+	cout << "\nNhap so luong hoa don: "; cin >> n;
+	vector<Mathang> A(m);
+	vector<Hoadon> B(n);
+	
+	cout << "\nNhap thong tin cac mat hang: \n";
+	inputVector(A, m);
+	
+	cout << "\nNhap thong tin cac hoa don: \n";
+	inputVector(B, n);
+
+	cout << "\n\nMat hang da nhap: \n";
+	printVector(A, m);
+
+	cout << "\n\Hoa don da nhap: \n";
+	printVector(B, n);
+	
+	double res = 0;
+	string d;
+
+	cout << "\n\Nhap ngay can tim: \t";
+	cin >> d;
+
+	for (int i = 0; i < n; i++) {
+		if (B[i].getDate() == d) {
+			double cost = 0;
+			for (int j = 0; j < m; j++) {
+				if (A[j].getID() == B[i].getID()) {
+					cost = A[j].getCost();
+				}
+			}
+
+			res += B[i].Calc(cost);
+		}
+	}
+	cout << "\nTong tien trong ngay " << d << " = " << res << endl;
+
+	return 0;
+}

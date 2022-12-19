@@ -1,0 +1,171 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+template<class T>
+class node {
+private:
+	T value;
+	node* next;
+
+public:
+	node() {
+		next = NULL;
+	}
+
+	node(T value) {
+		this->value = value;
+		next = NULL;
+	}
+	node(T value, node* next) {
+		this->value = value;
+		this->next = next;
+	}
+
+	void setNext(node* p) {
+		next = p;
+	}
+	node* getNext() {
+		return next;
+	}
+	T& getElem() {
+		return this->value;
+	}
+
+	T operator*() {
+		return value;
+	}
+};
+
+template<class T>
+class singleList_iterator {
+private:
+	node<T>* curr;
+
+public:
+	typedef node<T> node;
+
+	singleList_iterator() { curr = NULL; }
+	singleList_iterator(node* p) { curr = p; }
+	node* getCurr() {
+		return curr;
+	}
+	T getElem() {
+		return curr->getElem();
+	}
+	singleList_iterator operator++() {
+		curr = curr->getNext();
+		return *this;
+	}
+	singleList_iterator operator++(int) {
+		singleList_iterator p = *this;
+		curr = curr->getNext();
+		return p;
+	}
+	bool operator!=(singleList_iterator B) {
+		return curr != B.curr;
+	}
+	T operator*() {
+		return getElem();
+	}
+};
+
+template<class T>
+class singleLink {
+private:
+	node<T>* head, * trail;
+	int num;
+
+public:
+	typedef node<T> node;
+	typedef singleList_iterator<T> iterator;
+
+	singleLink() {
+		head = trail = NULL;
+		num = 0;
+	}
+	int size() {
+		return num;
+	}
+
+	void push_back(T value) {
+		if (head == NULL) {
+			head = trail = new node(value, NULL);
+			num++;
+			return;
+		}
+
+		trail->setNext(new node(value, NULL));
+		trail = trail->getNext();
+		num++;
+	}
+	void push_front(T value) {
+		if (head == NULL) {
+			head = trail = new node(value, NULL);
+			num++;
+			return;
+		}
+
+		node* p = new node(value, head);
+
+		head = p;
+		num++;
+	}
+	void pop_front() {
+		if (size() == 1)
+		{
+			head = trail = NULL;
+		}
+		else {
+			head = head->getNext();
+			num--;
+		}
+	}
+	void pop_back() {
+		if (size() == 1) {
+			head = trail = NULL;
+			num--;
+			return;
+		}
+		node* curr = head;
+		while (curr->getNext() != trail) {
+			curr = curr->getNext();
+		}
+		delete trail;
+		trail = curr;
+		curr->setNext(NULL);
+		num--;
+	}
+	iterator begin() {
+		return iterator(this->head);
+	}
+	iterator end() {
+		return NULL;
+	}
+
+	void display() {
+		iterator it = begin();
+
+		for (it; it != end(); it++) {
+			cout << *it << " ";
+		}
+	}
+};
+
+int main() {
+	singleLink<int> arr;
+	arr.push_back(1);
+	arr.push_front(0);
+	arr.push_back(2);
+	arr.push_back(3);
+	arr.push_back(4);
+
+	do {
+		arr.display(); cout << endl;
+		arr.pop_back();
+	} while (arr.size());
+
+
+	return 0;
+}

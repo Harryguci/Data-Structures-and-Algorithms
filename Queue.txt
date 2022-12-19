@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+template<class T>
+class Queue {
+private:
+	int First, Last, num, cap;
+	T* buff;
+
+public:
+	Queue() {
+		First = Last = num = cap = 0;
+		buff = NULL;
+	}
+	~Queue() {
+		if (buff)
+			delete[] buff;
+	}
+	bool empty() {
+		return num == 0;
+	}
+	void reverse(int newCap) {
+		T* newBuff = new T[newCap];
+		for (int i = First, j = 0; i < First + num; i++, j++) {
+			newBuff[j] = buff[i % cap];
+		}
+		First = 0;
+		Last = num + First;
+
+		if (buff)
+			delete[] buff;
+		buff = newBuff;
+		cap = newCap;
+	}
+
+	void push(T value) {
+		if (num == cap) {
+			reverse(cap * 2 + 1);
+		}
+
+		buff[Last] = value;
+		Last = (Last + 1) % cap;
+		
+		num++;
+		
+	}
+	T pop() {
+		T value = buff[First];
+		First = (First + 1) % cap;
+		
+		num--;
+		return value;
+	}
+	T& front() {
+		return buff[First];
+	}
+	T& back() {
+		return (Last - 1 < 0 ? buff[cap - 1] : buff[Last - 1]);
+	}
+
+};
+
+int main() {
+	Queue<int> queue;
+	queue.push(1);
+	queue.push(2);
+	queue.push(3);
+	queue.push(4);
+
+	do {
+		cout << queue.pop() << " ";
+	} while (!queue.empty());
+
+
+	return 0;
+}

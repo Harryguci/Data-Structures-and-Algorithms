@@ -1,0 +1,101 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+template<class T>
+class vector_iterator {
+private:
+	T* curr;
+
+public:
+	vector_iterator() {
+		curr = NULL;
+	}
+	vector_iterator(T* p) {
+		curr = p;
+	}
+	T& operator* () {
+		return *curr;
+	}
+	vector_iterator& operator++() {
+		curr++;
+		return curr;
+	}
+	vector_iterator& operator++(int) {
+		vector_iterator temp = curr;
+		curr++;
+		return temp;
+	}
+	bool operator!=(const vector_iterator& B) {
+		return curr != B.curr;
+	}
+};
+
+template<class T>
+class Vector {
+private:
+	T* buff;
+	int cap, num;
+
+public:
+	typedef vector_iterator<T> iterator;
+
+	Vector() {
+		buff = NULL; cap = num = 0;
+	}
+	Vector(int n) {
+		cap = num = n;
+		buff = new T[n];
+	}
+	int size() {
+		return num;
+	}
+	bool empty() {
+		return (size() == 0);
+	}
+	void reverse(int newCap) {
+		T* newBuff = new T[newCap];
+		for (int i = 0; i < cap; i++)
+			newBuff[i] = buff[i];
+		delete[] buff;
+		buff = newBuff;
+
+		cap = newCap;
+	}
+	void push_back(T value) {
+		if (num == cap) {
+			reverse(cap * 2 + 1);
+		}
+
+		buff[num] = value; num++;
+	}
+	void pop_back() {
+		num--;
+	}
+
+	iterator begin() {
+		return iterator(buff);
+	}
+	iterator end() {
+		return iterator(buff + num);
+	}
+	T& at(int k) {
+		if (k >= 0 && k < num)
+			return buff[k];
+	}
+};
+
+int main1() {
+
+	Vector<int> arr;
+	arr.push_back(1);
+	arr.push_back(2);
+	arr.push_back(3);
+	arr.push_back(4);
+
+	Vector<int>::iterator it = arr.begin();
+	for (it; it != arr.end(); it++) {
+		cout << (*it) << " ";
+	}
+	return 0;
+}
