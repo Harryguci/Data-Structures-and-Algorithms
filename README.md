@@ -16,3 +16,6 @@
     <li><b>Struct_map: </b>Cách sử dụng map với key là 1 object tự định nghĩa (struct, class).</li>
     <li><b>Vector: </b>Cài đặt cấu trúc vector với mảng.</li>
 <ul>
+
+# Harryguci
+<a href="https://www.facebook.com/chu.huy.020808/">https://www.facebook.com/chu.huy.020808/</a>
