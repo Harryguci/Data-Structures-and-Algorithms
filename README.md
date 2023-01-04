@@ -3,6 +3,7 @@
 <h2>Cấu trúc tài liệu</h2>
 <ul>
     <li><b>Algorithm: </b>Một số hàm Algorithm nhanh trong code thi đấu.</li>
+    <li><b>BFS: </b>Breath First Search - Thuật toán tìm kiếm theo chiều rộng (trên đồ thị).</li>
     <li><b>Binary_tree: </b>Cài đặt cấu trúc cây nhị phân tìm kiếm (Binary Search Tree).</li>
     <li><b>check_soNT: </b>Kiểm tra nhanh một số nguyên tố. Độ phức tạp thời gian: O(n*logn)</li>
     <li><b>common-sum-sub-sequence: </b>Tìm tổng chung nhỏ nhất của mảng con trong 1 mảng.</li>
