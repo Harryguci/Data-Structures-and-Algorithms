@@ -1,3 +1,6 @@
+# If you want to use map data structure for a *struct* object you have to define operators(==, <, ..) for it.
+
+```C++
 #include <iostream>
 #include <map>
 
@@ -35,3 +38,4 @@ int main()
 	std::cout << "NO";
 	return 0;
 }
+```
