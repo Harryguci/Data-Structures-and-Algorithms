@@ -1,3 +1,6 @@
+# Find the number of consecutive non-empty subsequences of A that sum to 0.\
+
+```C++
 /*
  Print the number of consecutive non-empty subsequences of A that sum to 0.
 */
@@ -31,3 +34,5 @@ int main() {
 
 	return 0;
 }
+
+```

@@ -1,3 +1,6 @@
+# Example for BFS
+
+```C++
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -80,3 +83,4 @@ int main() {
 	cout << "\nThe best way is " << Bfs(matrix, startPoint, endPoint);
 	return 0;
 }
+```

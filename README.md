@@ -11,6 +11,7 @@
     <li><b>double_linked_list: </b>Cài đặt cấu danh sách liên kết kép.</li>
     <li><b>Fibo_nhanh: </b>Tìm nhanh số fibonaci thức n.</li>
     <li><b>Queue: </b>Cài đặt cấu trúc hàng đợi (Queue) với mảng.</li>
+    <li><b>Sequences sum to 0</li>
     <li><b>single_linked_list: </b>Cài đặt cấu trúc danh sách liên kết đơn.</li>
     <li><b>SortAlgo: </b>Một số giải thuật sắp xếp phổ biến.</li>
     <li><b>Stack: </b>Cài đặt cấu trúc ngăn xếp (Stack) với mảng.</li>

@@ -1,5 +1,7 @@
-// xay dung lop da thuc
+# Build the Polynomial class.
 
+```C++
+// xay dung lop da thuc
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -98,3 +100,4 @@ int main() {
 
 	return 0;
 }
+```

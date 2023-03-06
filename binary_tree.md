@@ -1,3 +1,6 @@
+# Set up a binary tree class in C++
+
+```C++
 #include <iostream>
 #include <string>
 
@@ -127,3 +130,4 @@ int main() {
 
 	return 0;
 }
+```

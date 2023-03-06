@@ -1,3 +1,6 @@
+# Check a number is a primary number or not.
+
+```C++
 bool check(long long n) {
     long m, k;
     if (n < 2) return false;
@@ -13,3 +16,5 @@ bool check(long long n) {
     }
     return true;
 }
+
+```

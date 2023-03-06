@@ -1,3 +1,6 @@
+# Find the biggest total of all subsequences in an array.
+
+```C++
 #include <iostream>
 #include <limits.h>
 using namespace std;
@@ -28,3 +31,4 @@ int main()
 		cout << max_am;
 	return 0;
 }
+```
